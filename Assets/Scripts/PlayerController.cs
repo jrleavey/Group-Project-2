@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
     public bool hasScroll = false;
+    public GameObject candleLight;
+    public bool isLightOn = true;
 
     Vector3 Velocity;
     bool isGrounded;
@@ -24,6 +26,22 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Movement();
+        if (Input.GetKeyDown(KeyCode.F) && isLightOn == true)
+        {
+            candleLight.SetActive(false);
+            isLightOn = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && isLightOn == false)
+        {
+            candleLight.SetActive(true);
+            isLightOn = true;
+        }
+    }
+
+    
+    public void Movement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
