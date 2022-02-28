@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
-    public Transform groundCheck;
+    public float prayerBeadCount = 0;
     public float groundDistance;
     public LayerMask groundMask;
+    public Transform groundCheck;
+    public bool hasScroll = false;
 
     Vector3 Velocity;
     bool isGrounded;
@@ -44,5 +46,15 @@ public class PlayerController : MonoBehaviour
         Velocity.y += gravity * Time.deltaTime;
 
         controller.Move(Velocity * Time.deltaTime);
+    }
+
+    public void AddPrayerBead()
+    {
+        prayerBeadCount++;
+    }
+
+    public void AddScroll()
+    {
+        hasScroll = true;
     }
 }
